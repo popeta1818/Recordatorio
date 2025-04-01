@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:Recordatorio.Views"
+       x:Class="Recordatorio.AppShell"
+       Title="Mi Cuidador de Medicamentos"
+       FlyoutBehavior="Disabled">
+
+    <!-- Configuración de la barra de pestañas principal -->
+    <TabBar>
+        <!-- Pestaña Inicio -->
+        <ShellContent Title="Inicio"
+                      Icon="home.png"
+                      ContentTemplate="{DataTemplate views:MenuInicio}"
+                      Route="MenuInicio" />
+
+        <!-- Pestaña Medicamentos -->
+        <ShellContent Title="Medicinas"
+                      Icon="pill.png"
+                      ContentTemplate="{DataTemplate views:MedicinasPage}"
+                      Route="MedicinasPage" />
+
+        <!-- Pestaña Registrar -->
+        <ShellContent Title="Registrar"
+                      Icon="plus.png"
+                      ContentTemplate="{DataTemplate views:RegistroMedicamentoPage}"
+                      Route="RegistroMedicamentoPage" />
+    </TabBar>
+
+    <!-- Páginas secundarias (accesibles desde navegación pero no mostradas en el TabBar) -->
+    <ShellContent Route="ListaPage"
+                  ContentTemplate="{DataTemplate views:Lista}" />
+
+    <ShellContent Route="CalendarioPage"
+                  ContentTemplate="{DataTemplate views:Calendario}" />
+
+    <ShellContent Route="DetalleMedicamentoPage"
+                  ContentTemplate="{DataTemplate views:DetalleMedicamentoPage}" />
+</Shell>

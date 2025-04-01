@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recordatorio.Views.MenuInicio"
+             Title="Mi Cuidador de Medicamentos"
+             BackgroundColor="#FAFAFA">
+
+    <!-- Layout principal usando Grid -->
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+
+        <!-- Encabezado (Fila 0) -->
+        <Border Grid.Row="0" 
+                Stroke="#4A6FA5"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 15"
+                Background="#4A6FA5"
+                Padding="15"
+                HeightRequest="100">
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <Image Source="buho.png" 
+                       WidthRequest="60" 
+                       HeightRequest="60"
+                       VerticalOptions="Center"/>
+
+                <Label Text="Buhitocuida" 
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+        </Border>
+
+        <!-- Contenido principal (Fila 1) -->
+        <Border Grid.Row="1" 
+                Stroke="#E0E0E0"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 20"
+                Background="White"
+                Padding="20"
+                Margin="0,20">
+            <StackLayout Spacing="25">
+
+                <!-- Botón Medicamentos -->
+                <Border Stroke="Transparent"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Background="#F5F9FF"
+                        HeightRequest="80">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Image Source="pill_icon.png"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               Margin="15,0"/>
+
+                        <Label Text="Medicamentos" 
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#4A6FA5"
+                               VerticalOptions="Center"
+                               Grid.Column="1"/>
+
+                        <Image Source="arrow_right.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Grid.Column="2"
+                               Margin="0,0,15,0"/>
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSeleccionarMedicamentoClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Botón Calendario -->
+                <Border Stroke="Transparent"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Background="#F0F7FF"
+                        HeightRequest="80">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Image Source="calendar_icon.png"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               Margin="15,0"/>
+
+                        <Label Text="Calendario" 
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#4A6FA5"
+                               VerticalOptions="Center"
+                               Grid.Column="1"/>
+
+                        <Image Source="arrow_right.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Grid.Column="2"
+                               Margin="0,0,15,0"/>
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCalendarioClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Botón Listas -->
+                <Border Stroke="Transparent"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Background="#E6F0FF"
+                        HeightRequest="80">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Image Source="list_icon.png"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               Margin="15,0"/>
+
+                        <Label Text="Mis Listas" 
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#4A6FA5"
+                               VerticalOptions="Center"
+                               Grid.Column="1"/>
+
+                        <Image Source="arrow_right.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Grid.Column="2"
+                               Margin="0,0,15,0"/>
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnListasClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+            </StackLayout>
+        </Border>
+
+        <!-- Botones inferiores (Fila 2) -->
+        <Grid Grid.Row="2" 
+              RowDefinitions="Auto,Auto" 
+              ColumnDefinitions="*"
+              Margin="20,0"
+              RowSpacing="10">
+
+            <Button Text="EMERGENCIA" 
+                    BackgroundColor="#E74C3C"
+                    TextColor="White"
+                    CornerRadius="30"
+                    HeightRequest="60"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Grid.Row="0"
+                    Clicked="OnEmergencyClicked"/>
+
+            <Button Text="Hablar con Alexa"
+                    BackgroundColor="#FF9900"
+                    TextColor="White"
+                    CornerRadius="30"
+                    HeightRequest="60"
+                    FontSize="18"
+                    Grid.Row="1"
+                    Clicked="OnAlexaButtonClicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

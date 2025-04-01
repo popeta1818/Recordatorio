@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recordatorio.Views.Lista"
+             Title="Lista"
+             BackgroundColor="{StaticResource BGGray}">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="20">
+            <Label Text="Lista de Medicamentos"
+                   FontSize="20"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <ListView x:Name="MedicamentosListView"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="10"
+                                   BackgroundColor="#2C3E50"
+                                   Padding="15"
+                                   Margin="0,5">
+                                <StackLayout>
+                                    <Label Text="{Binding Nombre}"
+                                           FontSize="16"
+                                           TextColor="White"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Descripcion}"
+                                           FontSize="14"
+                                           TextColor="LightGray"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

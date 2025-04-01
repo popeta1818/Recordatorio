@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recordatorio.MainPage"
+             BackgroundColor="{StaticResource BGGray}">
+
+    <Grid Margin="15" RowDefinitions=".4*, .1*, .1*, .4*">
+
+        <!-- Imagen del búho/cuidador -->
+        <Border Grid.RowSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20,20,20,20"/>
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions=".3*, .7*">
+                <Image Grid.RowSpan="2"
+                       Aspect="Fill"
+                       Source="buhitocuida.jpg"/>
+
+                <Grid ColumnDefinitions="*, *">
+                    <!-- Botón de regreso -->
+                    <Border Margin="15,35,0,0"
+                            BackgroundColor="{StaticResource DarkGray}"
+                            HeightRequest="50"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            WidthRequest="50">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10,10,10,10"/>
+                        </Border.StrokeShape>
+                        <Label FontFamily="Icons"
+                               FontSize="25"
+                               HorizontalOptions="Center"
+                               Text="&#xE801;"
+                               TextColor="{StaticResource LightGray}"
+                               VerticalOptions="Center"/>
+                    </Border>
+
+                    <!-- Icono de favorito -->
+                    <Border Margin="0,35,-150,90"
+                            BackgroundColor="{StaticResource DarkGray}"
+                            HeightRequest="50"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            WidthRequest="50">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10,10,10,10"/>
+                        </Border.StrokeShape>
+                        <Label FontFamily="Icons"
+                               FontSize="25"
+                               HorizontalOptions="Center"
+                               Text="&#xE800;"
+                               TextColor="{StaticResource LightGray}"
+                               VerticalOptions="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Tarjeta de información del medicamento -->
+        <Frame Grid.Row="1"
+               Grid.RowSpan="2"
+               Margin="0,10,0,0"
+               BackgroundColor="{StaticResource DarkGray}"
+               CornerRadius="20"
+               Padding="15">
+            <StackLayout>
+                <Label Text="Paracetamol 500mg"
+                       FontSize="20"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
+
+                <Label Text="$15"
+                       FontSize="18"
+                       TextColor="Orange"
+                       FontAttributes="Bold"/>
+
+                <Label Text="Alivio rápido del dolor y fiebre."
+                       FontSize="16"
+                       TextColor="LightGray"/>
+
+                <StackLayout Orientation="Horizontal" Spacing="5">
+                    <Label Text="⭐ 4.5"
+                           FontSize="16"
+                           TextColor="Gold"
+                           FontAttributes="Bold"/>
+                    <Label Text="(4,446)"
+                           FontSize="14"
+                           TextColor="LightGray"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <!-- Descripción y opciones de tamaño -->
+        <Grid Grid.Row="3" RowDefinitions=".4*, .4*, .2*">
+            <!-- Descripción del medicamento -->
+            <VerticalStackLayout Margin="0,20,0,0" Spacing="10">
+                <Label FontFamily="RubikRegular"
+           FontSize="16"
+           Text="Descripción"
+           TextColor="#D9DADA"/>
+
+                <!-- Label para el texto cortado -->
+                <Label x:Name="DescripcionCortada"
+           FontSize="14"
+           LineHeight="1.3"
+           MaxLines="3"
+           Text="Es un medicamento que se puede comprar sin receta para aliviar la fiebre y el dolor. Es un fármaco seguro para tratar muchos problemas cuando se utiliza correctamente. Pero si se da en dosis demasiado altas puede hacer que el niño se ponga muy enfermo."
+           TextColor="{StaticResource LightGray}"/>
+
+                <!-- Label para el texto completo (inicialmente oculto) -->
+                <Label x:Name="DescripcionCompleta"
+           FontSize="14"
+           LineHeight="1.3"
+           IsVisible="False"
+           Text="Es un medicamento que se puede comprar sin receta para aliviar la fiebre y el dolor. Es un fármaco seguro para tratar muchos problemas cuando se utiliza correctamente. Pero si se da en dosis demasiado altas puede hacer que el niño se ponga muy enfermo."
+           TextColor="{StaticResource LightGray}"/>
+
+                <!-- Botón "Leer más" -->
+                <Button x:Name="LeerMasButton"
+            Text="Leer más"
+            TextColor="{StaticResource Brown}"
+            BackgroundColor="Transparent"
+            FontSize="14"
+            HorizontalOptions="Start"
+            Clicked="OnLeerMasClicked"/>
+            </VerticalStackLayout>
+
+            <!-- Opciones de tamaño -->
+            <VerticalStackLayout Grid.Row="1" 
+                                 Margin="0,40,100,0"
+                                 Spacing="20">
+                <Label Text="Tamaño" TextColor="White"/>
+
+                <HorizontalStackLayout RadioButtonGroup.GroupName="MenuCategories"
+                                       Spacing="10"
+                                       VerticalOptions="Center">
+                    <BindableLayout.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Small</x:String>
+                            <x:String>Medium</x:String>
+                            <x:String>Large</x:String>
+                        </x:Array>
+                    </BindableLayout.ItemsSource>
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="{Binding .}">
+                                <RadioButton.ControlTemplate>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Border x:Name="Container"
+                                                    Stroke="{StaticResource BGGray}"
+                                                    WidthRequest="100">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="10,10,10,10"/>
+                                                </Border.StrokeShape>
+                                                <Label x:Name="TextLabel"
+                                                       HorizontalOptions="Center"
+                                                       Text="{TemplateBinding Content}"
+                                                       VerticalOptions="Center"/>
+                                            </Border>
+
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroupList>
+                                                    <VisualStateGroup x:Name="CheckedStates">
+                                                        <VisualState x:Name="Checked">
+                                                            <VisualState.Setters>
+                                                                <Setter TargetName="TextLabel"
+                                                                        Property="Label.TextColor"
+                                                                        Value="{StaticResource Brown}"/>
+                                                                <Setter TargetName="Container"
+                                                                        Property="Border.BackgroundColor"
+                                                                        Value="{StaticResource BGGray}"/>
+                                                                <Setter TargetName="Container"
+                                                                        Property="Border.Stroke"
+                                                                        Value="{StaticResource Brown}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unchecked">
+                                                            <VisualState.Setters>
+                                                                <Setter TargetName="TextLabel"
+                                                                        Property="Label.TextColor"
+                                                                        Value="{StaticResource LightGray}"/>
+                                                                <Setter TargetName="Container"
+                                                                        Property="Border.BackgroundColor"
+                                                                        Value="{StaticResource DarkGray}"/>
+                                                                <Setter TargetName="Container"
+                                                                        Property="Border.Stroke"
+                                                                        Value="{StaticResource DarkGray}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateGroupList>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </RadioButton.ControlTemplate>
+                            </RadioButton>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Botón "Agregar a lista" -->
+            <Button Grid.Row="2"
+                    Text="Agregar a lista"
+                    BackgroundColor="{StaticResource Brown}"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HorizontalOptions="Fill"
+                    Margin="0,20,0,0"
+                    Clicked="OnAddToListClicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recordatorio.Views.Calendario"
+             Title="Calendario"
+             BackgroundColor="{StaticResource BGGray}">
+
+    <StackLayout Margin="20" Spacing="20">
+        <Label Text="Calendario de Medicamentos"
+               FontSize="20"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+
+        <!-- ListView para mostrar los eventos del calendario -->
+        <ListView x:Name="EventosListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Fecha}"
+                                   FontSize="16"
+                                   TextColor="White"/>
+                            <Label Text="{Binding Descripcion}"
+                                   FontSize="14"
+                                   TextColor="LightGray"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
